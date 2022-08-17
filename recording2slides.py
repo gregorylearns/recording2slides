@@ -1,8 +1,6 @@
 import cv2
-import time
-import os
+from os import mkdir
 import argparse
-import numpy as np
 from PIL import Image
 from tqdm import tqdm
 from imagehash import phash
@@ -21,12 +19,12 @@ def video_to_frames(input_loc, output_loc):
         None
     """
     try:
-        os.mkdir(output_loc)
+        mkdir(output_loc)
     except OSError:
         pass
 
 
-    interval = 800 #in milliseconds
+    interval = 1200 #in milliseconds
 
     # Start capturing the feed
     cap = cv2.VideoCapture(input_loc)
@@ -51,14 +49,14 @@ def video_to_frames(input_loc, output_loc):
             continue
 
         cap.set(cv2.CAP_PROP_POS_MSEC,(int(f*interval)))
-        if ref_img is None: # None inig first  run
+        if ref_img is None: # CODE FOR FIRST LOOP
             ref_img = frame
             cv2.imwrite(output_loc + "/%#05d.jpg" % count, frame)
 
             bounds = get_bounding_box.get_bounding_box(ref_img)
 
             img1_PIL = Image.fromarray(ref_img).crop(bounds)
-            img1_phash = phash(img1_PIL,hash_size=6,)
+            img1_phash = phash(img1_PIL,hash_size=6)
             count += 1
             continue
 
@@ -72,15 +70,13 @@ def video_to_frames(input_loc, output_loc):
 
 
         # if percentage > tolerance:
-        if abs(ref_hamming -hamming_distance) > 1:
+        if abs(ref_hamming - hamming_distance) > 1:
             # Write the results back to output location.
             cv2.imwrite(output_loc + "/%#05d.jpg" % count, frame)
             count += 1
             ref_img = img2
             ref_hamming = hamming_distance
             continue
-
-
 
     # If there are no more frames left
     # Release the feed
