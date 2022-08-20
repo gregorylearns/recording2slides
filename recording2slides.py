@@ -86,33 +86,6 @@ def video_to_frames(input_loc, output_loc):
     print ("Done extracting frames.\n%d frames extracted" % count)
 
 
-# def compare_image_hist(img1,img2):
-# 	# Convert it to HSV
-# 	img1_hsv = cv2.cvtColor(img1, cv2.COLOR_BGR2HSV)
-# 	img2_hsv = cv2.cvtColor(img2, cv2.COLOR_BGR2HSV)
-
-# 	# Calculate the histogram and normalize it
-# 	hist_img1 = cv2.calcHist([img1_hsv], [0,1], None, [180,256], [0,180,0,256])
-# 	cv2.normalize(hist_img1, hist_img1, alpha=0, beta=1, norm_type=cv2.NORM_MINMAX);
-# 	hist_img2 = cv2.calcHist([img2_hsv], [0,1], None, [180,256], [0,180,0,256])
-# 	cv2.normalize(hist_img2, hist_img2, alpha=0, beta=1, norm_type=cv2.NORM_MINMAX);
-
-# 	# find the metric value
-# 	metric_val = cv2.compareHist(hist_img1, hist_img2, cv2.HISTCMP_BHATTACHARYYA)
-# 	return(metric_val)
-
-# def compare_image_norm(img1,img2):
-# 	errorL2 = cv2.norm(img1, img2, cv2.NORM_L2 )
-# 	similarity = 1 - errorL2 
-# 	print('Similarity = ',similarity)
-
-# 	return(similarity)
-
-# def compare_image_phash(img1,img2):
-# 	img1cv2.img_hash.PHash_create()
-
-
-
 if __name__=="__main__":
 
 
