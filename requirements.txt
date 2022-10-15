@@ -2,3 +2,5 @@ imagehash
 opencv-python
 pillow
 tqdm
+matplotlib
+six
