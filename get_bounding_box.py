@@ -60,7 +60,7 @@ def get_bounding_box(image):
     plt.connect('key_press_event', toggle_selector)
 
     manager = plt.get_current_fig_manager()
-    manager.window.showMaximized()
+    # manager.window.showMaximized()
 
     plt.show()
     print(bounds)
